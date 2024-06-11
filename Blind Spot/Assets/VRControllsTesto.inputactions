@@ -1,0 +1,34 @@
+{
+    "name": "VRControllsTesto",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "3a8a43ed-9c8b-4bd2-928e-5301dfee67e7",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "c3328ba7-263f-49ab-8098-72c5bd3a0f16",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "726e57a4-7cdc-4517-8e04-2fd15a787d4b",
+                    "path": "<XRSimulatedController>{LeftHand}/primary2DAxisTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

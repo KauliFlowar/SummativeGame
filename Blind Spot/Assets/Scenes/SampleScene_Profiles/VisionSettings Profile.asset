@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   focusDistance:
-    overrideState: 0
-    value: 10
-  aperture:
-    overrideState: 0
-    value: 5.6
-  focalLength:
-    overrideState: 0
-    value: 50
-  kernelSize:
-    overrideState: 0
+    overrideState: 1
     value: 1
+  aperture:
+    overrideState: 1
+    value: 4
+  focalLength:
+    overrideState: 1
+    value: 30
+  kernelSize:
+    overrideState: 1
+    value: 2
 --- !u!114 &-2590184003436585323
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -46,7 +46,7 @@ MonoBehaviour:
     value: 1
   XAxis:
     overrideState: 1
-    value: {x: 0.5, y: 0, z: 0}
+    value: {x: 1, y: 0, z: 0}
   YAxis:
     overrideState: 1
     value: {x: 0, y: 1, z: 0}

@@ -136,6 +136,8 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 11400000, guid: d926a7a793886aa44b1b431f4f057bd2, type: 2}
+  - {fileID: 11400000, guid: 1decef39f44f59646a352fbe7e192f9a, type: 2}
+  - {fileID: 8469454044725162063, guid: 5f777a5383e4e4747b731e974267ed81, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -154,7 +156,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.BlindSpot
   buildNumber:
     Standalone: 0
     VisionOS: 0

@@ -1,3 +1,4 @@
+using System;
 using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,8 +6,8 @@ using UnityEngine;
 
 public class BasicGrabTransformer : OneGrabFreeTransformer, ITransformer
 {
-    private IGrabbable _grabbable;
-    private Collider[] _colliders;
+    [NonSerialized]
+    private Rigidbody _rb;
 
     private bool _isGrabbed;
 
@@ -17,25 +18,24 @@ public class BasicGrabTransformer : OneGrabFreeTransformer, ITransformer
 
     private void Start()
     {
-        _colliders = gameObject.GetComponentsInChildren<Collider>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     void ITransformer.BeginTransform()
     {
         base.BeginTransform();
-        foreach (var collider in _colliders)
-        {
-            collider.enabled = false;
-        }
         _isGrabbed = true;
     }
 
     void ITransformer.EndTransform() { 
-        base.EndTransform(); 
-        foreach (var collider in _colliders)
-        {
-            collider.enabled = true;
-        }
+        base.EndTransform();
         _isGrabbed = false;
+    }
+
+    void ITransformer.UpdateTransform()
+    {
+        base.UpdateTransform();
+        if (_rb != null)
+            Physics.SyncTransforms();
     }
 }

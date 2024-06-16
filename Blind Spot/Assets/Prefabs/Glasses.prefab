@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529855372896597931}
   - component: {fileID: 1640618312814242551}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: EffectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 0}
-  isGlobal: 0
+  sharedProfile: {fileID: 11400000, guid: 3b2326c59d28c6f4ca913a9ca4d7e116, type: 2}
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
@@ -100,6 +100,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}
       propertyPath: m_Name
       value: Glasses
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -161,7 +165,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3496168642489217859
@@ -233,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a33553b93054a542a1da44510ed305b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 1640618312814242551}
+  target: {fileID: 0}
 --- !u!1 &8720752415574438261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9157943139577863650, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}

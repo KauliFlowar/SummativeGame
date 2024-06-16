@@ -2,73 +2,103 @@ using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 
-public class GlassesTransformer : OneGrabFreeTransformer, ITransformer
+public class GlassesTransformer : BasicGrabTransformer, ITransformer
 {
-    private PostProcessVolume _ppVolume;
-    private DepthOfField _dof;
+    public PostProcessVolume postProcessVolume;
+    public Collider target;
+    
+    private DepthOfField _nearsighted;
 
     private bool _attached;
 
-    private MeshRenderer _meshRenderer;
+    private MeshRenderer[] _meshRenderers;
     private Collider[] _colliders;
 
-    private GameObject _potentialParent;
+    private bool _isTouchingTarget;
+    private bool _followFace;
+    
+    private bool _isVisible = true;
 
-
-    private bool _isGrabbed;
-
-    public bool IsGrabbed
+    private Rigidbody _rb;
+    private bool IsVisible
     {
-        get => _isGrabbed;
+        get => _isVisible;
+        set
+        {
+            _isVisible = value;
+            foreach (var mesh in _meshRenderers)
+                mesh.enabled = value;
+        }
+    }
+
+    private bool _isTangible = true;
+
+    private bool IsTangible
+    {
+        get => _isTangible;
+        set
+        {
+            _isTangible = value;
+            foreach (var collider in _colliders)
+            {
+                collider.enabled = value;
+            }
+        }
     }
 
     private void Start()
     {
-        _meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        _meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
         _colliders = gameObject.GetComponentsInChildren<Collider>();
-
-        _ppVolume = GetComponent<PostProcessVolume>();
-        if (!_ppVolume.profile.TryGetSettings<DepthOfField>(out _dof)) 
+        
+        if (!postProcessVolume.profile.TryGetSettings(out _nearsighted)) 
             throw new ApplicationException("NOOOOOOOOOOOOOOOO");
+
+        _rb = GetComponent<Rigidbody>();
+
+        _nearsighted.enabled.value = true;
     }
 
     private void Update()
     {
-        _dof.enabled.value = (transform.parent == null);
+        bool hasParent = transform.parent != null;
+        _nearsighted.enabled.value = !hasParent;
+        if (hasParent)
+        {
+            _rb.position = transform.position = transform.parent.position;
+        }
     }
 
     void ITransformer.BeginTransform()
     {
-        transform.parent = null;
-
+        _rb.isKinematic = false;
         base.BeginTransform();
-        foreach (var collider in _colliders)
-        {
-            collider.enabled = false;
-        }
-        _isGrabbed = true;
     }
 
     void ITransformer.EndTransform()
     {
         base.EndTransform();
-        foreach (var collider in _colliders)
-        {
-            collider.enabled = true;
-        }
-
-        _isGrabbed = false;
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        var otherObject = other.gameObject;
-        if (otherObject.name == "CenterEyeAnchor")
+        if (other.gameObject == target.gameObject)
         {
-            transform.parent = otherObject.transform.parent;
+            _isTouchingTarget = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == target.gameObject)
+        {
+            _isTouchingTarget = false;
         }
     }
 }

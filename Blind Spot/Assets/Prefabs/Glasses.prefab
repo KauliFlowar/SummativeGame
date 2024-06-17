@@ -126,7 +126,7 @@ PrefabInstance:
       addedObject: {fileID: 6577092320838324574}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3616705099254310187}
+      addedObject: {fileID: 6854040832311129306}
     - targetCorrespondingSourceObject: {fileID: 9157943139577863650, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3466834707833897198}
@@ -183,7 +183,7 @@ MonoBehaviour:
   _transferOnSecondSelection: 0
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: 3616705099254310187}
+  _oneGrabTransformer: {fileID: 0}
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
@@ -225,7 +225,7 @@ MonoBehaviour:
   _grabbable: {fileID: 3496168642489217859}
   _rigidbody: {fileID: 3551284521504757799}
   _scaleMassWithSize: 1
---- !u!114 &3616705099254310187
+--- !u!114 &6854040832311129306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,11 +234,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 779319600993997254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a33553b93054a542a1da44510ed305b, type: 3}
+  m_Script: {fileID: 11500000, guid: 96a47804de8143eeb706e40cd4f58ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postProcessVolume: {fileID: 1640618312814242551}
-  target: {fileID: 0}
+  _physicsGrabbable: {fileID: 6577092320838324574}
+  _postProcessVolume: {fileID: 1640618312814242551}
+  _rigidbody: {fileID: 3551284521504757799}
+  _target: {fileID: 0}
 --- !u!1 &8720752415574438261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9157943139577863650, guid: 33fca69d03fc5bda1b3c3f1e30ac000f, type: 3}

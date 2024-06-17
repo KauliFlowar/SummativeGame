@@ -48,6 +48,17 @@ namespace Oculus.Interaction
 
         public event Action<Vector3, Vector3> WhenVelocitiesApplied = delegate { };
 
+        /// <summary>
+        /// Called before the PhysicsGrabbable disables physics.
+        /// </summary>
+        public event Action BeforePhysicsDisable = delegate { };
+        
+        /// <summary>
+        /// Called after the PhysicsGrabbable enables physics.
+        /// </summary>
+        public event Action AfterPhysicsEnable = delegate { };
+        
+
         private void Reset()
         {
             _grabbable = this.GetComponent<Grabbable>();
@@ -85,6 +96,7 @@ namespace Oculus.Interaction
                 case PointerEventType.Select:
                     if (_grabbable.SelectingPointsCount == 1 && !_isBeingTransformed)
                     {
+                        BeforePhysicsDisable();
                         DisablePhysics();
                     }
 
@@ -93,6 +105,7 @@ namespace Oculus.Interaction
                     if (_grabbable.SelectingPointsCount == 0)
                     {
                         ReenablePhysics();
+                        AfterPhysicsEnable();
                     }
 
                     break;

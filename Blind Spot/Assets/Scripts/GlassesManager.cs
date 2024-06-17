@@ -93,6 +93,7 @@ public class GlassesManager : MonoBehaviour
             // stick glasses to target
             transform.parent = _target.transform;
             transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
             // make glasses invisible
             IsVisible = false;
             // we can see now

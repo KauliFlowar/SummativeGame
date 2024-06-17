@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndLevelTrigger
     : MonoBehaviour
@@ -26,11 +27,13 @@ public class EndLevelTrigger
         {
             if (glassesTrigger.childCount > 0)
             {
+                // warp to end screen
+                SceneManager.LoadScene("EndScreen");
 
             }
             else
             {
-                // reset door rotation
+                // reset door rotation, warp player back into level if possible
             }
         }
     }
